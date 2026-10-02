@@ -1,0 +1,228 @@
+.cuenta-page {
+  padding: var(--section-y) clamp(1rem, 4vw, 2rem);
+}
+
+.cuenta-vista {
+  padding: var(--space-lg);
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.cuenta-vista-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.cuenta-email {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.cuenta-editar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-btn);
+  background: none;
+  color: var(--color-accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cuenta-editar:hover {
+  background: var(--color-brand-tint);
+}
+
+.cuenta-datos {
+  display: grid;
+  margin: 0;
+}
+
+.cuenta-dato {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--space-sm);
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.cuenta-dato dt {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.cuenta-dato dd {
+  margin: 0;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+}
+
+.cuenta-dato dd.vacio {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.cuenta-mensaje {
+  margin: var(--space-sm) 0 0;
+  font-size: 0.9rem;
+  color: var(--color-brand);
+}
+
+.cuenta-enlace {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+.cuenta-enlace a {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Historial */
+.pedidos-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pedido-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem 1rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.pedido-numero {
+  font-family: var(--font-display);
+  color: var(--color-brand);
+}
+
+.pedido-fecha,
+.pedido-modalidad {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.pedido-total {
+  font-family: var(--font-display);
+  color: var(--color-brand);
+  text-align: right;
+}
+
+.estado {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  justify-self: end;
+}
+
+.estado-pendiente { background: var(--color-offer); }
+.estado-en_preparacion { background: var(--color-brand-tint); color: var(--color-brand); }
+.estado-preparado { background: var(--color-brand); }
+.estado-listo { background: var(--color-ink); }
+.estado-entregado { background: var(--color-muted); }
+.estado-cancelado { background: var(--color-accent); }
+
+.pedido-detalle {
+  padding: var(--space-lg);
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.pedido-detalle ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.pedido-detalle li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.pedido-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border-radius: var(--radius-btn);
+  background: var(--color-whatsapp);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pedido-whatsapp-alt {
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* Recien creado: el paso que falta es mandarlo por WhatsApp. */
+.pedido-creado {
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  border-left: 4px solid var(--color-brand);
+  border-radius: var(--radius-card);
+  background: var(--color-brand-tint);
+}
+
+.pedido-creado p {
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.pedido-creado .pedido-whatsapp {
+  margin-top: var(--space-sm);
+}
+
+.pedido-aviso {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* Con ticket: el estimado queda como referencia, debajo del total a pagar. */
+.pedido-detalle li.pedido-estimado {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.pedido-ticket {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}

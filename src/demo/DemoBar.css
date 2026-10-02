@@ -1,0 +1,81 @@
+/* Alto de la barra: el navbar se pega debajo (top-[var(--demo-barra)]). */
+:root {
+  --demo-barra: 36px;
+}
+
+/* Una sola linea siempre: si creciera, el navbar sticky la taparia. */
+.demo-barra {
+  position: sticky;
+  top: 0;
+  z-index: 55;
+  height: var(--demo-barra);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0 0.75rem;
+  overflow-x: auto;
+  background: var(--color-ink);
+  color: #fff;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.demo-barra-marca {
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.demo-barra-rol {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.demo-barra-rol select {
+  padding: 0.1rem 0.35rem;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.demo-barra-reiniciar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid color-mix(in srgb, white 40%, transparent);
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.demo-barra-reiniciar:disabled,
+.demo-barra-rol select:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.demo-aviso {
+  margin: 0;
+  padding: 0.4rem 1rem;
+  background: var(--color-brand-tint);
+  color: var(--color-brand);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .demo-barra-rol > span {
+    display: none;
+  }
+}

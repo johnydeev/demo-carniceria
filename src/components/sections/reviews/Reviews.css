@@ -1,0 +1,31 @@
+.reviews-section {
+  background: #fff;
+  padding: var(--section-y) 0;
+}
+
+.reviews-grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.reviews-google {
+  text-align: center;
+  margin: var(--space-xl) 0 0;
+}
+
+.reviews-google a {
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.reviews-google a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

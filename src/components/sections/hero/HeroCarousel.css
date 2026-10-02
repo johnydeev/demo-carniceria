@@ -1,0 +1,216 @@
+/*
+ * 12:5 en todas las pantallas: el cartel se ve entero, sin recorte (#037). En
+ * el celular recortar a 4:3 comia los costados de carteles que no respetaban
+ * la zona segura.
+ */
+.carrusel {
+  position: relative;
+  aspect-ratio: 12 / 5;
+  overflow: hidden;
+  background: var(--color-brand-dark);
+  outline: none;
+}
+
+.carrusel:focus-visible {
+  outline: 3px solid var(--color-offer);
+  outline-offset: 3px;
+}
+
+.carrusel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.carrusel-slide.activo {
+  opacity: 1;
+}
+
+.carrusel-slide a {
+  display: block;
+  height: 100%;
+}
+
+.carrusel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.carrusel-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-brand);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.carrusel-flecha:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.carrusel-flecha-izq { left: 0.75rem; }
+.carrusel-flecha-der { right: 0.75rem; }
+
+.carrusel-puntos {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+
+/*
+ * El boton mide 24x24 -el minimo tactil que pide WCAG- y el punto visible es
+ * un pseudo-elemento chico adentro. Asi se ve discreto y se toca facil.
+ */
+.carrusel-punto {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrusel-punto::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: width 0.25s, background 0.25s;
+}
+
+.carrusel-punto.activo {
+  width: 36px;
+}
+
+.carrusel-punto.activo::before {
+  width: 22px;
+  background: #fff;
+}
+
+/* Slide de marca: cuando no hay carteles vigentes. */
+.carrusel-marca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+}
+
+.carrusel-marca-logo {
+  background: #fff;
+  border-radius: var(--radius-btn);
+  padding: 0.5rem 0.9rem;
+  height: auto;
+  width: clamp(160px, 30vw, 260px);
+}
+
+.carrusel-marca-titulo {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  margin: 0.5rem 0 0;
+}
+
+.carrusel-marca-sub {
+  font-size: var(--text-base);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.carrusel-marca-cta {
+  display: inline-block;
+  margin-top: 0.75rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+}
+
+.carrusel-marca-cta:hover {
+  background: var(--color-accent-dark);
+}
+
+/*
+ * En el celular el cartel mide ~155 px de alto: las flechas taparian media
+ * imagen. Se pasa con el dedo (swipe) o con los puntos, que van debajo del
+ * cartel, sobre la banda, para no tapar el texto de abajo. Los slides llenan
+ * el contenedor justo, asi que sin overflow no asoma nada. El slide de marca
+ * necesita mas alto para logo, titulo y boton.
+ */
+@media (max-width: 767px) {
+  .carrusel-flecha {
+    display: none;
+  }
+
+  .carrusel:not(.carrusel-marca) {
+    overflow: visible;
+    margin-bottom: 24px;
+  }
+
+  .carrusel-puntos {
+    top: 100%;
+    bottom: auto;
+  }
+
+  .carrusel.carrusel-marca {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/*
+ * Con la ventana mas ancha que el cartel, los bordes de cada slide se funden
+ * en la banda —como MELI con su amarillo— en vez de terminar en un canto. La
+ * mascara va en el slide y no en .carrusel para no atenuar flechas ni puntos.
+ * El fondo pasa a transparente para que asome la banda, no un rectangulo.
+ */
+@media (min-width: 1240px) {
+  .carrusel:not(.carrusel-marca) {
+    background: transparent;
+  }
+
+  .carrusel-slide {
+    mask-image: linear-gradient(to right, transparent, #000 72px, #000 calc(100% - 72px), transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrusel-slide {
+    transition: none;
+  }
+}
+
+/* En la demo el CTA del slide de marca es un boton (abre el modal de WhatsApp). */
+button.carrusel-marca-cta {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}

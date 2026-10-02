@@ -1,0 +1,113 @@
+.product-search-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 0.5rem 0;
+}
+
+.product-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid var(--color-line);
+  border-radius: 50px;
+  padding: 0.6rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.product-search-wrapper:focus-within {
+  border-color: var(--color-brand);
+  box-shadow: 0 4px 16px rgba(138, 92, 246, 0.15);
+}
+
+.product-search-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-muted);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.product-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: clamp(0.95rem, 3vw, 1.05rem);
+  color: var(--color-ink);
+  background: transparent;
+  padding: 0;
+  width: 100%;
+}
+
+.product-search-input::placeholder {
+  color: color-mix(in srgb, var(--color-ink) 37.5%, white);
+}
+
+.product-search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color-ink) 6.5%, white);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.product-search-clear:hover {
+  background: var(--color-line);
+  color: var(--color-ink);
+}
+
+.product-search-clear:active {
+  transform: scale(0.95);
+}
+
+.product-search-info {
+  margin-top: 0.75rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  color: var(--color-muted);
+  padding: 0 0.5rem;
+}
+
+.product-search-info strong {
+  color: var(--color-brand);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .product-search-container {
+    padding: 0;
+  }
+
+  .product-search-wrapper {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .product-search-icon {
+    margin-right: 12px;
+  }
+
+  .product-search-clear {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.product-search-wrapper:focus-within .product-search-icon {
+  color: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-search-wrapper,
+  .product-search-clear {
+    transition: none;
+  }
+}

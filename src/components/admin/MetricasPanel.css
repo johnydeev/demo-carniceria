@@ -1,0 +1,155 @@
+.metricas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.metricas-solapa {
+  display: inline-flex;
+  align-self: flex-start;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-btn);
+  overflow: hidden;
+}
+
+.metricas-solapa button {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  background: #fff;
+  color: var(--color-ink);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.metricas-solapa button + button {
+  border-left: 1px solid var(--color-line);
+}
+
+.metricas-solapa button.activa {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.metricas-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.metricas-tarjeta {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  background: #fff;
+}
+
+.metricas-tarjeta h2 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metricas-valor {
+  margin: 0.35rem 0 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: var(--color-brand);
+}
+
+.metricas-detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.metricas-cancelados {
+  color: var(--color-accent);
+}
+
+.metricas-sin-ticket {
+  color: var(--color-offer);
+}
+
+.metricas-barras {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.4rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.metricas-barras li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.metricas-barra-zona {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 160px;
+}
+
+.metricas-barra {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background: var(--color-brand-tint);
+}
+
+.metricas-barras li.en-curso .metricas-barra {
+  background: var(--color-brand);
+}
+
+/* En el celular doce montos no entran: quedan en title y aria-label. */
+.metricas-barra-monto {
+  display: none;
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.metricas-barra-rotulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--color-ink);
+}
+
+.metricas-barra-rotulo small {
+  font-size: 0.65rem;
+  color: var(--color-muted);
+}
+
+.metricas-vacio,
+.metricas-nota {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.metricas-error {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .metricas-barra-monto {
+    display: block;
+  }
+}

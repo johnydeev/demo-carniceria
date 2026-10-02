@@ -1,0 +1,86 @@
+/* Documentos legales: una columna angosta, pensada para leerse largo. */
+
+.legal-page {
+  padding: var(--space-2xl) 0;
+  background: var(--color-cream);
+}
+
+.legal-header {
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.legal-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: var(--color-brand);
+  margin: 0 0 0.6rem;
+}
+
+/* La barra roja de marca, como en .section-title pero alineada a la izquierda. */
+.legal-title::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: 0.7rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.legal-fecha {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin: 0 0 var(--space-md);
+}
+
+.legal-intro {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.legal-seccion {
+  margin-bottom: var(--space-xl);
+}
+
+.legal-seccion-titulo {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--color-brand);
+  margin: 0 0 var(--space-sm);
+}
+
+.legal-parrafo {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-sm);
+}
+
+.legal-lista {
+  margin: 0 0 var(--space-sm);
+  padding-left: 1.2rem;
+  list-style: none;
+}
+
+.legal-lista li {
+  position: relative;
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--color-ink);
+  margin-bottom: 0.6rem;
+}
+
+.legal-lista li::before {
+  content: '';
+  position: absolute;
+  left: -1.2rem;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}

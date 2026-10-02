@@ -1,0 +1,222 @@
+/*
+ * La banda indigo termina a la mitad de la primera fila de cards, con una
+ * linea roja de 8 px en el borde: la firma de marca, como el filete del
+ * navbar. El corte es un gradiente con parada en pixeles, no en porcentaje:
+ * con varias filas en mobile un porcentaje se moveria. Las cards flotan
+ * encima de la linea.
+ */
+.ofertas-band {
+  --corte: calc(150px + 3.5rem);
+  --linea: 8px;
+  margin-top: var(--space-xl);
+  padding-bottom: var(--section-y);
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent var(--corte),
+    var(--color-accent) var(--corte),
+    var(--color-accent) calc(var(--corte) + var(--linea)),
+    var(--color-cream) calc(var(--corte) + var(--linea))
+  );
+}
+
+.ofertas-cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  color: #fff;
+}
+
+.ofertas-titulo {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: #fff;
+  margin: 0;
+}
+
+.ofertas-ver-todo {
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ofertas-ver-todo:hover {
+  text-decoration: underline;
+}
+
+.ofertas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.oferta-card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  padding-bottom: 1rem;
+  /* Columna: el contenido apilado, todas las cards a la misma altura en la fila. */
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-float);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.oferta-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.oferta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Rubro arriba a la izquierda y oferta abajo a la derecha de la foto, como en el catalogo. */
+.oferta-rubro,
+.oferta-badge {
+  position: absolute;
+  z-index: 2;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-pill);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.oferta-rubro {
+  top: 0.5rem;
+  left: 0.5rem;
+  background: color-mix(in srgb, var(--color-brand) 90%, transparent);
+}
+
+.oferta-badge {
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: var(--color-offer);
+}
+
+.oferta-name {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin: 0.75rem 0.75rem 0.25rem;
+}
+
+.oferta-price {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-brand);
+  margin: 0 0.75rem;
+}
+
+.oferta-unit {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.oferta-unit-price {
+  margin: 0.15rem 0.75rem 0;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.oferta-card:not(.oferta-cierre):hover {
+  border-color: var(--color-brand);
+}
+
+.oferta-cierre {
+  grid-column: 1 / -1;
+  background: var(--color-brand);
+  color: #fff;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.25rem;
+  padding: var(--space-lg);
+  min-height: 140px;
+}
+
+.oferta-cierre-numero {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: 1;
+}
+
+.oferta-cierre-texto {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+.oferta-cierre-boton {
+  margin-top: 0.5rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-btn);
+  font-size: var(--text-sm);
+  transition: background 0.2s;
+}
+
+.oferta-cierre:hover .oferta-cierre-boton {
+  background: var(--color-accent-dark);
+}
+
+/* Seis productos mas la de cierre: 2-2-2 en el celular, 3-3 en tablet (el cierre a lo ancho), una fila de 7 en escritorio. */
+@media (min-width: 768px) {
+  .ofertas-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*
+ * Escritorio: las seis cards y la de cierre en una sola fila de siete,
+ * centrada con su propio ancho —no el del cartel— (pedido del dueno). El
+ * titulo y "Ver todo" viven en el mismo contenedor, asi que se alinean con la
+ * fila. Menos aire entre el cartel y la fila, para que entre en la primera
+ * pantalla.
+ */
+@media (min-width: 1024px) {
+  .ofertas-band {
+    margin-top: var(--space-md);
+    /* La linea roja al pie de la foto: cabecera (~52 px) + foto 4:3 de una
+       card de 165 px (~124 px). Con el corte de mobile caia sobre el nombre. */
+    --corte: 176px;
+  }
+
+  .ofertas-band > .container {
+    --oferta-ancho: 165px;
+    max-width: calc(7 * var(--oferta-ancho) + 6 * var(--space-sm));
+  }
+
+  .ofertas-cabecera {
+    margin-bottom: var(--space-sm);
+  }
+
+  .ofertas-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: var(--space-sm);
+  }
+
+  .oferta-cierre {
+    grid-column: auto;
+    min-height: 0;
+  }
+}

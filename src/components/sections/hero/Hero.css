@@ -1,0 +1,79 @@
+.hero-section {
+  background: linear-gradient(160deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+  color: #fff;
+  padding-top: var(--space-lg);
+}
+
+.hero-carrusel {
+  max-width: var(--container);
+  margin: var(--space-md) auto 0;
+}
+
+/* El h1 de la pagina: corto, legible, sin competir con el cartel. */
+.hero-claim {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Firma de marca: la barra roja antes del claim. */
+.hero-claim::before {
+  content: '';
+  flex: none;
+  width: 1.5rem;
+  height: 3px;
+  background: var(--color-accent);
+}
+
+/*
+ * Con la ventana mas ancha que el contenedor mas su padding, el h1 y las
+ * ofertas se alinean al borde del carrusel, que va a 1200 px sin padding.
+ */
+@media (min-width: 1280px) {
+  .hero-section .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/*
+ * Primera pantalla en escritorio: el h1, el cartel y la fila de ofertas
+ * completa tienen que entrar sin scroll. El cartel es 12:5 y no se recorta,
+ * asi que lo que se achica es el ancho de la columna —carrusel, h1 y fila
+ * juntos, para que sigan alineados al mismo borde— segun la altura de la
+ * ventana. A 1200 px de ancho recien con ~1000 px de alto; nunca menos de 900.
+ */
+@media (min-width: 1024px) {
+  .hero-section {
+    /* `vh` de respaldo: sin soporte de `svh` (Safari < 15.4) la variable seria
+       invalida y el h1 y el cartel quedaban a ancho completo. */
+    --hero-ancho: clamp(900px, calc((100vh - 355px - var(--demo-barra)) * 1.9), var(--container));
+    padding-top: var(--space-sm);
+  }
+
+  .hero-carrusel {
+    max-width: var(--hero-ancho);
+    margin-top: var(--space-sm);
+  }
+
+  /* Solo el h1: la fila de ofertas tiene su propio ancho, centrada (Ofertas.css). */
+  .hero-section > .container {
+    max-width: var(--hero-ancho);
+  }
+}
+
+/* Con `svh` (la altura sin las barras del navegador), la cuenta usa esa. */
+@supports (height: 100svh) {
+  @media (min-width: 1024px) {
+    .hero-section {
+      --hero-ancho: clamp(900px, calc((100svh - 355px - var(--demo-barra)) * 1.9), var(--container));
+    }
+  }
+}

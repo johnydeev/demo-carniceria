@@ -1,0 +1,151 @@
+.footer {
+  background: var(--color-brand-dark);
+  border-top: 4px solid var(--color-accent);
+  color: rgba(255, 255, 255, 0.82);
+  padding: var(--space-2xl) 0 var(--space-lg);
+}
+
+.footer-columns {
+  display: grid;
+  gap: var(--space-xl);
+  text-align: center;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo {
+  display: inline-block;
+  background: #fff;
+  border-radius: var(--radius-btn);
+  padding: 0.5rem 0.75rem;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-logo img {
+  width: 150px;
+  height: auto;
+}
+
+.footer-description {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  max-width: 24rem;
+  margin: 0 auto var(--space-md);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+.social-link:hover {
+  background: var(--color-accent);
+}
+
+.footer-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: #fff;
+  margin: 0 0 var(--space-md);
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+}
+
+.footer-list a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-list a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm) var(--space-md);
+  margin-top: 0.6rem;
+}
+
+.footer-legal a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .footer-columns {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    text-align: left;
+  }
+
+  .footer-column {
+    align-items: flex-start;
+  }
+
+  .footer-description {
+    margin-left: 0;
+  }
+
+  .social-links {
+    justify-content: flex-start;
+  }
+}
+
+/* El telefono abre el modal de WhatsApp: boton con aspecto de enlace de la lista. */
+.footer-boton-enlace {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.footer-boton-enlace:hover {
+  color: #fff;
+  text-decoration: underline;
+}

@@ -1,0 +1,114 @@
+.product-grid-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.75rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+/* Skeleton loading */
+.product-card-skeleton {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 6.5%, white) 25%, color-mix(in srgb, var(--color-ink) 13.5%, white) 50%, color-mix(in srgb, var(--color-ink) 6.5%, white) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-content {
+  padding: clamp(0.7rem, 2.2vw, 0.95rem);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-line {
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 6.5%, white) 25%, color-mix(in srgb, var(--color-ink) 13.5%, white) 50%, color-mix(in srgb, var(--color-ink) 6.5%, white) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 80%;
+}
+
+.skeleton-description {
+  width: 100%;
+}
+
+.skeleton-price {
+  height: 24px;
+  width: 40%;
+  margin-top: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Empty state */
+.product-grid-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+  text-align: center;
+  color: color-mix(in srgb, var(--color-ink) 45%, white);
+}
+
+.product-grid-empty svg {
+  color: color-mix(in srgb, var(--color-ink) 22.5%, white);
+  margin-bottom: 1.5rem;
+}
+
+.product-grid-empty h3 {
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-ink) 67.5%, white);
+  margin: 0 0 0.5rem 0;
+}
+
+.product-grid-empty p {
+  font-size: clamp(0.95rem, 3vw, 1.05rem);
+  color: color-mix(in srgb, var(--color-ink) 45%, white);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .product-grid-container {
+    padding: clamp(0.65rem, 2vw, 1.2rem);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.7rem, 2vw, 1.15rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  }
+}
