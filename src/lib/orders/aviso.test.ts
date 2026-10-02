@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mensajeAviso, urlAviso, type PedidoParaAviso } from './aviso.ts';
 
-const DATOS = { alias: 'la.esquina.demo', titular: 'Juan Pérez', direccionLocal: 'Av. Siempre Viva 742, Villa Ejemplo' };
+const DATOS = { alias: 'la.esquina.demo', titular: 'Juan Pérez', direccionLocal: 'Av. Belgrano 1450, Barrio Centro' };
 // Miercoles 30/9/2026 de 17:00 a 20:45 hora argentina.
 const TURNO = { turnoInicio: '2026-09-30T20:00:00.000Z', turnoFin: '2026-09-30T23:45:00.000Z' };
 
@@ -47,7 +47,7 @@ test('preparado + efectivo: se paga al retirar o al recibir', () => {
 test('listo + retiro: direccion del local y turno', () => {
   assert.equal(
     mensajeAviso(pedido({ status: 'listo', metodoPago: 'efectivo' }), DATOS),
-    'Hola María! Tu pedido #123 está listo para retirar en Av. Siempre Viva 742, Villa Ejemplo, el miércoles 30/9 por la tarde (17:00 a 20:45).'
+    'Hola María! Tu pedido #123 está listo para retirar en Av. Belgrano 1450, Barrio Centro, el miércoles 30/9 por la tarde (17:00 a 20:45).'
   );
 });
 
@@ -62,7 +62,7 @@ test('sin turno (pedidos anteriores al horario): sin la parte del turno', () => 
   const sinTurno = { turnoInicio: null, turnoFin: null };
   assert.equal(
     mensajeAviso(pedido({ status: 'listo', ...sinTurno }), DATOS),
-    'Hola María! Tu pedido #123 está listo para retirar en Av. Siempre Viva 742, Villa Ejemplo.'
+    'Hola María! Tu pedido #123 está listo para retirar en Av. Belgrano 1450, Barrio Centro.'
   );
   assert.equal(
     mensajeAviso(pedido({ status: 'listo', delivery: 'envio', ...sinTurno }), DATOS),

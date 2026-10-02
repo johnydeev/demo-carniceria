@@ -59,6 +59,7 @@ Todo `src/` de la app de origen salvo lo que listan las secciones de abajo. En p
 | `src/lib/orders/aviso.ts` (comentario), `aviso.test.ts`, `mensaje.test.ts`, `cobro.test.ts`, `banners.test.ts` | datos de ejemplo (alias, dirección, WhatsApp, dominio) en lugar de los de la app de origen |
 | `Reviews`, `AboutMe`, `Footer` (`SERVICIOS`), `src/app/productos/page.tsx` (subtítulo) | textos propios de la demo |
 | `src/app/admin/admin.css`, `Hero.css` | descuentan el alto de la barra de la demo (`--demo-barra`) |
+| `src/demo/semilla.ts`, `scripts/imagenes-demo.mjs` | los productos sin foto del catálogo común (fiambrería y almacén) usan imágenes ilustradas (`ilustracion-*`) generadas por `scripts/imagenes-demo.mjs` |
 
 ### Excepción de lint (temporal)
 

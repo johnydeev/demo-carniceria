@@ -10,8 +10,8 @@ export const negocio: NegocioConfig = {
   claim: 'Carnicería, granja, fiambrería y almacén de barrio',
   fundado: 2001,
   direccion: {
-    calle: 'Av. Siempre Viva 742',
-    localidad: 'Villa Ejemplo',
+    calle: 'Av. Belgrano 1450',
+    localidad: 'Barrio Centro',
     provincia: 'Buenos Aires',
     cp: 'B0000',
     pais: 'AR',

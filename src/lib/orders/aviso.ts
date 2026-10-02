@@ -22,7 +22,7 @@ export interface PedidoParaAviso {
 export interface DatosAviso {
   alias: string;
   titular: string;
-  /** "Av. Siempre Viva 742, Villa Ejemplo", de negocio.config. */
+  /** "Av. Belgrano 1450, Barrio Centro", de negocio.config. */
   direccionLocal: string;
 }
 

@@ -9,8 +9,9 @@ const existe = (ruta: string) => existsSync(path.join(PUBLICO, ruta));
 const e = semilla(new Date('2026-10-01T15:00:00.000Z'));
 
 test('cada foto de la semilla existe en sus dos tamaños (correr npm run imagenes si falla)', () => {
-  for (const p of e.productos.filter((x) => x.imageUrl)) {
-    const url = p.imageUrl as string;
+  for (const p of e.productos) {
+    assert.ok(p.imageUrl, `${p.name} sin imagen`);
+    const url = p.imageUrl;
     assert.ok(existe(url), url);
     assert.ok(existe(url.replace('-720.webp', '-360.webp')), url);
   }

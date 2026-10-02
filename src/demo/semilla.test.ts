@@ -35,15 +35,12 @@ test('productos: unos 25-30, ids y codigos unicos, rubros validos, publicados y 
   }
 });
 
-test('trae los casos de venta del spec: oferta, pack por kilo, pieza, caja y sin foto', () => {
+test('trae los casos de venta del spec: oferta, pack por kilo, pieza y caja', () => {
   const ps = semilla(AHORA).productos;
   assert.ok(ps.some((p) => p.isOffer));
   assert.ok(ps.some((p) => p.name === 'Pata y muslo x 3 kg' && esPaquete(p) && p.unit === 'Kg'));
   assert.ok(ps.some((p) => p.name.startsWith('Lechón') && esPieza(p)));
   assert.ok(ps.some((p) => p.name.includes('por caja') && esPaquete(p)));
-  const sinFoto = ps.filter((p) => p.imageUrl === null);
-  assert.ok(sinFoto.length >= 3);
-  assert.ok(sinFoto.every((p) => p.category === 'Fiambreria' || p.category === 'Almacen'));
   // Regla de la app: peso aproximado solo con unidad Kg y cantidad 1.
   for (const p of ps.filter((x) => x.pesoAprox !== null)) {
     assert.equal(p.unit, 'Kg', p.name);
@@ -51,8 +48,8 @@ test('trae los casos de venta del spec: oferta, pack por kilo, pieza, caja y sin
   }
 });
 
-test('las fotos son rutas locales de la version de 720', () => {
-  for (const p of semilla(AHORA).productos.filter((x) => x.imageUrl)) {
+test('todos los productos tienen imagen: ruta local de la version de 720', () => {
+  for (const p of semilla(AHORA).productos) {
     assert.ok(p.imageUrl?.startsWith('/demo/productos/') && p.imageUrl.endsWith('-720.webp'), p.name);
     assert.equal(p.imagePublicId, null, p.name);
   }
@@ -87,6 +84,12 @@ test('usuarios: el dueño es admin y semilla, el cliente demo existe y esta acti
 test('todos los telefonos sirven para el enlace de WhatsApp del panel', () => {
   for (const u of semilla(AHORA).usuarios) {
     assert.ok(u.phone && numeroWhatsApp(u.phone), `${u.name}: ${u.phone}`);
+  }
+});
+
+test('fiambreria y almacen usan las ilustraciones propias de la demo', () => {
+  for (const p of semilla(AHORA).productos.filter((x) => x.category === 'Fiambreria' || x.category === 'Almacen')) {
+    assert.ok(p.imageUrl?.startsWith('/demo/productos/ilustracion-'), p.name);
   }
 });
 

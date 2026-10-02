@@ -12,7 +12,7 @@ import type { ProductCategory } from '../lib/productCategories';
 import type { BannerDemo, CobroVista, EstadoDemo, ProductoDemo, UnidadProducto, UsuarioDemo } from './tipos';
 
 /** Subirla cuando cambian los datos iniciales: regenera la demo de quien ya entro. */
-export const VERSION_DEMO = 1;
+export const VERSION_DEMO = 2;
 
 export const ID_DUENIO_DEMO = 'u-duenio';
 export const ID_ENCARGADA_DEMO = 'u-encargada';
@@ -32,8 +32,8 @@ interface DatosProducto {
   quantity: number;
   isOffer: boolean;
   pesoAprox: number | null;
-  /** Nombre del archivo en /public/demo/productos, sin "-720.webp". */
-  foto: string | null;
+  /** Nombre del archivo en /public/demo/productos, sin "-720.webp". Todos tienen. */
+  foto: string;
 }
 
 /** Por kilo, cantidad 1, sin oferta ni peso: el caso comun. `extra` pisa lo demas. */
@@ -42,7 +42,7 @@ function p(
   name: string,
   price: number,
   category: ProductCategory,
-  foto: string | null,
+  foto: string,
   extra: Partial<DatosProducto> = {}
 ): DatosProducto {
   return { code, name, price, category, foto, unit: 'Kg', quantity: 1, isOffer: false, pesoAprox: null, ...extra };
@@ -82,11 +82,12 @@ const PRODUCTOS: DatosProducto[] = [
   // Caja: siempre precio cerrado (decision del dueño de la app real): Kg + kilos que trae.
   p('4005', 'Suprema por caja (15 kg)', 120000, 'Granja', 'suprema-caja', { quantity: 15 }),
   p('4006', 'Pata y muslo por caja (10 kg)', 42000, 'Granja', 'pata-muslo-caja', { quantity: 10 }),
-  // Fiambreria y almacen: sin foto, el catalogo dibuja el marcador.
-  p('5001', 'Jamón cocido', 14900, 'Fiambreria', null),
-  p('5002', 'Queso de máquina', 12900, 'Fiambreria', null),
-  p('6001', 'Huevos', 3500, 'Almacen', null, { unit: 'Docena' }),
-  p('6002', 'Aceite de girasol 1,5 L', 3900, 'Almacen', null, { unit: 'Unidad' }),
+  // Fiambreria y almacen: el catalogo comun no tiene foto; van ilustraciones
+  // propias de la demo (scripts/imagenes-demo.mjs).
+  p('5001', 'Jamón cocido', 14900, 'Fiambreria', 'ilustracion-jamon-cocido'),
+  p('5002', 'Queso de máquina', 12900, 'Fiambreria', 'ilustracion-queso-maquina'),
+  p('6001', 'Huevos', 3500, 'Almacen', 'ilustracion-huevos', { unit: 'Docena' }),
+  p('6002', 'Aceite de girasol 1,5 L', 3900, 'Almacen', 'ilustracion-aceite-girasol', { unit: 'Unidad' }),
 ];
 
 function productos(ahora: Date): ProductoDemo[] {
@@ -95,7 +96,7 @@ function productos(ahora: Date): ProductoDemo[] {
     code: d.code,
     name: d.name,
     price: d.price,
-    imageUrl: d.foto ? `/demo/productos/${d.foto}-720.webp` : null,
+    imageUrl: `/demo/productos/${d.foto}-720.webp`,
     imagePublicId: null,
     category: d.category,
     stock: null,
