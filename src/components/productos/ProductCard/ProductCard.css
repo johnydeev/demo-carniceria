@@ -185,6 +185,8 @@
 
 /* Unidad y distintivo de oferta (Fase 1) */
 .product-unit {
+  /* "por 2 kg" no se parte: o entra junto al precio o pasa entero abajo. */
+  white-space: nowrap;
   font-size: 0.75rem;
   font-weight: 400;
   color: var(--color-muted);

@@ -117,7 +117,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
           <span className="product-price">
             {formatPrice(product.Precio)}
             {product.Unidad && (
-              <span className="product-unit"> {product.Unidad}</span>
+              <>
+                {' '}
+                {/* El unico corte posible es antes de "por": "por 2 kg" va entero. */}
+                <span className="product-unit">{product.Unidad}</span>
+              </>
             )}
           </span>
           {product.PrecioUnitario && (

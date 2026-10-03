@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { formatUnitLabel, formatUnitPrice } from './format.ts';
+import { formatPieza, formatUnitLabel, formatUnitPrice } from './format.ts';
 
 test('cantidad 1 muestra solo la unidad', () => {
   assert.equal(formatUnitLabel('Kg', 1), 'por kg');
@@ -57,4 +57,16 @@ test('precio no numerico no rompe', () => {
 test('funciona con otras unidades', () => {
   assert.equal(formatUnitPrice(9000, 3, 'Docena'), '$ 3.000 por docena');
   assert.equal(formatUnitPrice(1000, 4, 'Caja'), '$ 250 por caja');
+});
+
+test('pieza: el unico corte de renglon posible es en " · "', () => {
+  const texto = formatPieza(13900, 10);
+  assert.equal(texto, `Pieza\u00a0≈\u00a010\u00a0kg · $\u00a0139.000\u00a0aprox.`);
+  // Solo quedan dos espacios comunes, los de alrededor del punto medio.
+  assert.equal(texto?.split(' ').length, 3);
+});
+
+test('pieza: sin peso aproximado no hay texto', () => {
+  assert.equal(formatPieza(13900, null), undefined);
+  assert.equal(formatPieza(13900, 0), undefined);
 });

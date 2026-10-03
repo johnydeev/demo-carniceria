@@ -121,6 +121,8 @@
 }
 
 .oferta-unit {
+  /* "por 3 kg" no se parte: o entra junto al precio o pasa entero abajo. */
+  white-space: nowrap;
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 400;

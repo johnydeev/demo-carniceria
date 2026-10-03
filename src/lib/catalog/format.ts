@@ -49,12 +49,19 @@ export function formatUnitPrice(
   return `${formatPrice(unitario)} ${formatUnitLabel(unit, 1)}`;
 }
 
+/** Espacio que no corta renglon: "$ 139.000" nunca queda "$" arriba y el numero abajo. */
+const NBSP = '\u00a0';
+const sinCorte = (texto: string) => texto.replace(/ /g, NBSP);
+
 /**
  * Texto de una pieza de peso variable para la card, corto para que entre en
  * una linea: peso aproximado y precio estimado. undefined si no es por pieza.
+ * Si no entra, el unico corte posible es en " · ": "Pieza ≈ 10 kg" de un lado
+ * y "$ 139.000 aprox." del otro.
  */
 export function formatPieza(price: number, pesoAprox: number | null | undefined): string | undefined {
   if (typeof pesoAprox !== 'number' || pesoAprox <= 0) return undefined;
   const peso = pesoAprox.toLocaleString('es-AR', { maximumFractionDigits: 1 });
-  return `Pieza ≈ ${peso} kg · ${formatPrice(Math.round(price * pesoAprox))} aprox.`;
+  const precio = formatPrice(Math.round(price * pesoAprox));
+  return `${sinCorte(`Pieza ≈ ${peso} kg`)} · ${sinCorte(`${precio} aprox.`)}`;
 }

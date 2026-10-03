@@ -62,8 +62,9 @@ export default function Ofertas({ productos, cantidadOfertas, totalPublicados }:
               </div>
               <h3 className="oferta-name">{oferta.name}</h3>
               <p className="oferta-price">
-                {formatPrice(oferta.price)}
-                <span className="oferta-unit"> {formatUnitLabel(oferta.unit, oferta.quantity)}</span>
+                {formatPrice(oferta.price)}{' '}
+                {/* El unico corte posible es antes de "por": "por 3 kg" va entero. */}
+                <span className="oferta-unit">{formatUnitLabel(oferta.unit, oferta.quantity)}</span>
               </p>
               {formatUnitPrice(oferta.price, oferta.quantity, oferta.unit) && (
                 <p className="oferta-unit-price">

@@ -12,7 +12,7 @@ import type { ProductCategory } from '../lib/productCategories';
 import type { BannerDemo, CobroVista, EstadoDemo, ProductoDemo, UnidadProducto, UsuarioDemo } from './tipos';
 
 /** Subirla cuando cambian los datos iniciales: regenera la demo de quien ya entro. */
-export const VERSION_DEMO = 2;
+export const VERSION_DEMO = 3;
 
 export const ID_DUENIO_DEMO = 'u-duenio';
 export const ID_ENCARGADA_DEMO = 'u-encargada';
@@ -51,7 +51,7 @@ function p(
 const PRODUCTOS: DatosProducto[] = [
   // Carniceria: vacuno
   p('1001', 'Asado de tira', 13900, 'Carniceria', 'asado'),
-  p('1002', 'Asado de tira x 3 kg', 37900, 'Carniceria', 'asado-plancha', { quantity: 3, isOffer: true }),
+  p('1002', 'Asado x plancha', 13900, 'Carniceria', 'asado-plancha', { pesoAprox: 10, isOffer: true }),
   p('1003', 'Vacío', 15900, 'Carniceria', 'vacio'),
   p('1004', 'Lomo', 21900, 'Carniceria', 'lomo'),
   p('1005', 'Paleta', 11900, 'Carniceria', 'paleta', { isOffer: true }),
